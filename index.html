@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI导航 | 每日更新的AI工具导航</title>
+    <meta name="description" content="AI导航 - 收录最优质的AI工具，每日更新，帮您发现最新的AI产品">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg: #0a0a0f;
+            --card-bg: #13131a;
+            --card-hover: #1a1a24;
+            --text: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --border: #27272a;
+            --accent: #22d3ee;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --ad-bg: #1e1e2e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(34, 211, 238, 0.1) 0%, transparent 50%),
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(99, 102, 241, 0.03) 50px, rgba(99, 102, 241, 0.03) 51px),
+                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(99, 102, 241, 0.03) 50px, rgba(99, 102, 241, 0.03) 51px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 0.75rem 0;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .logo-badge {
+            font-size: 0.65rem;
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 450px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.6rem 1rem 0.6rem 2.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.85rem;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .update-time {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Ad Banner */
+        .ad-banner {
+            background: var(--ad-bg);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+            padding: 0.6rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .ad-banner a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Main */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--primary) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 0.6rem 1.25rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-btn {
+            padding: 0.4rem 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.25rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            background: var(--card-hover);
+        }
+
+        .tool-card:hover::before {
+            opacity: 1;
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .tool-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .tool-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .tool-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .tool-badge {
+            font-size: 0.6rem;
+            padding: 0.1rem 0.35rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .badge-free {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .badge-paid {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+
+        .badge-new {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .tool-category {
+            font-size: 0.7rem;
+            color: var(--accent);
+            background: rgba(34, 211, 238, 0.1);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .tool-desc {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .tool-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+        }
+
+        .tool-tag {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.2rem 0.6rem;
+            border-radius: 100px;
+        }
+
+        .tool-link {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            opacity: 0;
+            transform: translateY(-3px);
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover .tool-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ad Card */
+        .ad-card {
+            background: linear-gradient(135deg, var(--ad-bg), #252532);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ad-card::before {
+            content: '广告';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+            background: rgba(255,255,255,0.1);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .ad-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ad-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .ad-card .ad-btn {
+            padding: 0.5rem 1.25rem;
+            background: var(--primary);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .ad-card .ad-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Guide Section */
+        .guide-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .guide-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            transition: all 0.3s;
+        }
+
+        .guide-card:hover {
+            border-color: var(--primary);
+        }
+
+        .guide-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .guide-list {
+            list-style: none;
+        }
+
+        .guide-list li {
+            padding: 0.4rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+        }
+
+        .guide-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Monetization Section */
+        .money-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .money-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.25rem;
+            transition: all 0.3s;
+        }
+
+        .money-card:hover {
+            border-color: var(--success);
+            transform: translateY(-2px);
+        }
+
+        .money-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--success);
+        }
+
+        .money-card p {
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .money-card .tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .money-card .tool-mini {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 100px;
+            color: var(--text-secondary);
+        }
+
+        /* GitHub Section */
+        .github-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .github-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .github-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .github-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .github-card .stars {
+            font-size: 0.75rem;
+            color: var(--warning);
+        }
+
+        .github-card p {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .github-card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .github-card .tag {
+            font-size: 0.65rem;
+            padding: 0.15rem 0.4rem;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        .footer-ads {
+            background: var(--ad-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-ads h4 {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .search-box {
+                max-width: 100%;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">✨</div>
+                <span>AI导航</span>
+                <span class="logo-badge">每日更新</span>
+            </a>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索 AI 工具...">
+            </div>
+            <div class="header-right">
+                <span class="update-time" id="updateTime">今日更新</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 顶部广告位 -->
+    <div class="ad-banner" id="topAd">
+        <span>📢 优质AI工具免费用 | <a href="#" target="_blank">立即查看 →</a></span>
+    </div>
+
+    <main>
+        <section class="hero">
+            <h1>发现最优质的 AI 工具</h1>
+            <p>收录 100+ AI 工具 | 每日更新 | 变现指南 | GitHub 精选</p>
+        </section>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number" id="toolCount">0</div>
+                <div class="stat-label">工具数量</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="categoryCount">0</div>
+                <div class="stat-label">分类数量</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="moneyCount">8</div>
+                <div class="stat-label">变现方式</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="githubCount">4</div>
+                <div class="stat-label">GitHub项目</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tools">🛠️ AI工具</button>
+            <button class="tab-btn" data-tab="guide">📖 使用指南</button>
+            <button class="tab-btn" data-tab="money">💰 变现策略</button>
+            <button class="tab-btn" data-tab="github">🐙 GitHub</button>
+        </div>
+
+        <!-- AI Tools Tab -->
+        <div class="tab-content active" id="tab-tools">
+            <div class="categories" id="categories"></div>
+            <div class="tools-grid" id="toolsGrid">
+                <div class="loading">加载中...</div>
+            </div>
+        </div>
+
+        <!-- Guide Tab -->
+        <div class="tab-content" id="tab-guide">
+            <h2 class="section-title">🎯 AI工具能做什么</h2>
+            <div class="guide-section">
+                <div class="guide-grid">
+                    <div class="guide-card">
+                        <h3>📝 内容创作</h3>
+                        <ul class="guide-list">
+                            <li>📰 写文章、博客、新闻稿</li>
+                            <li>📱 生成社交媒体文案</li>
+                            <li>📧 写邮件、简历、商业计划书</li>
+                            <li>🎬 短视频脚本、直播话术</li>
+                        </ul>
+                    </div>
+                    <div class="guide-card">
+                        <h3>🎨 图像设计</h3>
+                        <ul class="guide-list">
+                            <li>🖼️ AI绘画：Midjourney、Stable Diffusion</li>
+                            <li>📐 海报、LOGO、包装设计</li>
+                            <li>👔 模特图、商品图生成</li>
+                            <li>🖌️ 草图转效果图</li>
+                        </ul>
+                    </div>
+                    <div class="guide-card">
+                        <h3>🎬 视频制作</h3>
+                        <ul class="guide-list">
+                            <li>🎥 文生视频：Runway、Sora</li>
+                            <li>🖼️ 图生视频：Pika、Luma</li>
+                            <li>🎙️ 数字人、虚拟主播</li>
+                            <li>✂️ 视频剪辑、配音</li>
+                        </ul>
+                    </div>
+                    <div class="guide-card">
+                        <h3>💻 编程开发</h3>
+                        <ul class="guide-list">
+                            <li>🤖 代码补全：Cursor、Copilot</li>
+                            <li>🐛 Bug修复、性能优化</li>
+                            <li>📖 技术文档生成</li>
+                            <li>🔧 架构设计、技术选型</li>
+                        </ul>
+                    </div>
+                    <div class="guide-card">
+                        <h3>📊 办公效率</h3>
+                        <ul class="guide-list">
+                            <li>📊 PPT制作：Gamma、Tome</li>
+                            <li>📝 会议纪要、文档整理</li>
+                            <li>📅 日程管理、任务提醒</li>
+                            <li>🔢 数据分析、报表生成</li>
+                        </ul>
+                    </div>
+                    <div class="guide-card">
+                        <h3>🛒 电商营销</h3>
+                        <ul class="guide-list">
+                            <li>📦 商品描述、卖点文案</li>
+                            <li>📸 主图、视频素材制作</li>
+                            <li>📈 广告投放策略</li>
+                            <li>💬 客服话术、自动回复</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Money Tab -->
+        <div class="tab-content" id="tab-money">
+            <h2 class="section-title">💰 AI变现策略</h2>
+            <div class="money-grid">
+                <div class="money-card">
+                    <h3>🎨 AI绘画接单</h3>
+                    <p>用Midjourney、Stable Diffusion帮客户做头像、壁纸、海报设计</p>
+                    <div class="tools">
+                        <span class="tool-mini">Midjourney</span>
+                        <span class="tool-mini">Stable Diffusion</span>
+                        <span class="tool-mini">Leonardo</span>
+                    </div>
+                </div>
+                <div class="money-card">
+                    <h3>📝 代写服务</h3>
+                    <p>商业计划书、演讲稿、简历、论文等文字服务</p>
+                    <div class="tools">
+                        <span class="tool-mini">ChatGPT</span>
+                        <span class="tool-mini">Claude</span>
+                        <span class="tool-mini">Kimi</span>
+                    </div>
+                </div>
+                <div class="money-card">
+                    <h3>🎬 短视频制作</h3>
+                    <p>用AI工具批量生成短视频，做账号或接商单</p>
+                    <div class="tools">
+                        <span class="tool-mini">Runway</span>
+                        <span class="tool-mini">Pika</span>
+                        <span class="tool-mini">剪映</span>
+                    </div>
+                </div>
+                <div class="money-card">
+                    <h3>📦 数字产品销售</h3>
+                    <p>制作提示词模板、AI课程、数字资产去卖</p>
+                    <div class="tools">
+                        <span class="tool-mini">Canva</span>
+                        <span class="tool-mini">Notion</span>
+                        <span class="tool-mini">Gumroad</span>
+                    </div>
+                </div>
+                <div class="money-card">
+                    <h3>🛒 带货分成</h3>
+                    <p>用AI制作种草内容，挂车赚佣金</p>
+                    <div class="tools">
+                        <span class="tool-mini">ChatGPT</span>
+                        <span class="tool-mini">Midjourney</span>
+                        <span class="tool-mini">剪映</span>
+                    </div>
+                </div>
+                <div class="money-card">
+                    <h3>👨‍🏫 AI培训</h3>
+                    <p>教别人用AI工具，做付费课程或社群</p>
+                    <div class="tools">
+                        <span class="tool-mini">Gamma</span>
+                        <span class="tool-mini">Notion</span>
+                        <span class="tool-mini">小红书</span>
+                    </div>
+                </div>
+                <div class="money-card">
+                    <h3>🐛 开发AI应用</h3>
+                    <p>用AI API开发工具、SaaS服务卖订阅</p>
+                    <div class="tools">
+                        <span class="tool-mini">Cursor</span>
+                        <span class="tool-mini">Copilot</span>
+                        <span class="tool-mini">Vercel</span>
+                    </div>
+                </div>
+                <div class="money-card">
+                    <h3>📺 自媒体账号</h3>
+                    <p>用AI批量做内容，打造IP接广告</p>
+                    <div class="tools">
+                        <span class="tool-mini">ChatGPT</span>
+                        <span class="tool-mini">Midjourney</span>
+                        <span class="tool-mini">剪映</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GitHub Tab -->
+        <div class="tab-content" id="tab-github">
+            <h2 class="section-title">🐙 GitHub精选项目</h2>
+            <div class="github-grid" id="githubGrid">
+                <div class="github-card" onclick="window.open('https://github.com/ToolkitlyAI/awesome-ai-tools', '_blank')">
+                    <h3>📦 awesome-ai-tools <span class="stars">⭐ 1.2k</span></h3>
+                    <p>收录650+ AI工具，按功能分类</p>
+                    <div class="tags">
+                        <span class="tag">650+工具</span>
+                        <span class="tag">分类详细</span>
+                        <span class="tag">持续更新</span>
+                    </div>
+                </div>
+                <div class="github-card" onclick="window.open('https://github.com/eudk/awesome-ai-tools', '_blank')">
+                    <h3>🧠 awesome-ai-tools <span class="stars">⭐ 800+</span></h3>
+                    <p>超大型AI工具集合，学习资源丰富</p>
+                    <div class="tags">
+                        <span class="tag">学习资源</span>
+                        <span class="tag">开发工具</span>
+                        <span class="tag">综合</span>
+                    </div>
+                </div>
+                <div class="github-card" onclick="window.open('https://github.com/starryrbs/awesome-ai-tools', '_blank')">
+                    <h3>✨ awesome-ai-tools <span class="stars">⭐ 500+</span></h3>
+                    <p>精选生成式AI工具和LLM列表</p>
+                    <div class="tags">
+                        <span class="tag">生成式AI</span>
+                        <span class="tag">LLM</span>
+                        <span class="tag">精选</span>
+                    </div>
+                </div>
+                <div class="github-card" onclick="window.open('https://xiawu.github.io/awesome-ai-products/', '_blank')">
+                    <h3>🏆 awesome-ai-products <span class="stars">⭐ 持续更新</span></h3>
+                    <p>高质量AI产品列表，包含详细分类</p>
+                    <div class="tags">
+                        <span class="tag">产品评测</span>
+                        <span class="tag">Web版</span>
+                        <span class="tag">详细</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部广告位 -->
+    <div style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
+        <div class="footer-ads">
+            <h4>📢 广告合作</h4>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">欢迎AI工具厂商合作推广，精准触达目标用户 | 联系：ai@liangpin.com</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                <div class="ad-card" style="flex: 1; min-width: 200px; max-width: 300px;">
+                    <h3>🛠️ AI工具推广</h3>
+                    <p>精准曝光，按效果付费</p>
+                    <button class="ad-btn">立即咨询</button>
+                </div>
+                <div class="ad-card" style="flex: 1; min-width: 200px; max-width: 300px;">
+                    <h3>📣 品牌合作</h3>
+                    <p>专属方案，助力增长</p>
+                    <button class="ad-btn">立即咨询</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 AI导航 | 让AI帮你更高效 | <a href="https://github.com" target="_blank" style="color: var(--primary);">GitHub</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">每日自动更新数据 · 广告合作：ai@liangpin.com</p>
+    </footer>
+
+    <script>
+        // AI Tools Data (expanded from GitHub)
+        let aiTools = [
+            // 大语言模型
+            { name: "ChatGPT", category: "大语言模型", icon: "💬", iconBg: "linear-gradient(135deg, #10a37f, #1a7f64)", desc: "OpenAI开发的大型语言模型，支持对话、写作、编程等全方位任务", tags: ["免费", "最强AI", "多语言"], url: "https://chat.openai.com", price: "freemium", isNew: false },
+            { name: "Claude", category: "大语言模型", icon: "🧠", iconBg: "linear-gradient(135deg, #d97706, #b45309)", desc: "Anthropic推出的AI助手，特别擅长分析、写作和代码理解", tags: ["免费", "长文本", "安全"], url: "https://claude.ai", price: "free", isNew: false },
+            { name: "Kimi", category: "大语言模型", icon: "🌙", iconBg: "linear-gradient(135deg, #8b5cf6, #7c3aed)", desc: "月之暗面推出的国产AI助手，超长上下文，支持文件分析", tags: ["免费", "国产", "长文本"], url: "https://kimi.moonshot.cn", price: "free", isNew: false },
+            { name: "通义千问", category: "大语言模型", icon: "🏮", iconBg: "linear-gradient(135deg, #f97316, #ea580c)", desc: "阿里巴巴推出的国产大模型，支持多轮对话和创意内容生成", tags: ["免费", "国产", "阿里"], url: "https://tongyi.aliyun.com", price: "free", isNew: false },
+            { name: "文心一言", category: "大语言模型", icon: "🖌️", iconBg: "linear-gradient(135deg, #ef4444, #dc2626)", desc: "百度推出的国产大模型，擅长中文理解和生成", tags: ["免费", "国产", "百度"], url: "https://yiyan.baidu.com", price: "free", isNew: false },
+            { name: "Gemini", category: "大语言模型", icon: "🔵", iconBg: "linear-gradient(135deg, #4285f4, #3367d6)", desc: "Google推出的多模态AI，支持文本、图像、视频理解", tags: ["免费", "Google", "多模态"], url: "https://gemini.google.com", price: "free", isNew: false },
+            { name: "Perplexity", category: "大语言模型", icon: "🔍", iconBg: "linear-gradient(135deg, #f59e0b, #d97706)", desc: "AI搜索引擎，结合搜索引擎和大型语言模型，提供精准答案", tags: ["免费", "搜索", "问答"], url: "https://perplexity.ai", price: "freemium", isNew: false },
+            { name: "DeepSeek", category: "大语言模型", icon: "🔮", iconBg: "linear-gradient(135deg, #6366f1, #4338ca)", desc: "国产开源大模型，性能对标GPT-4，完全免费使用", tags: ["免费", "开源", "国产"], url: "https://deepseek.com", price: "free", isNew: true },
+            { name: "Kimi K1.5", category: "大语言模型", icon: "🥇", iconBg: "linear-gradient(135deg, #facc15, #eab308)", desc: "Kimi最新模型发布，数学和推理能力超群", tags: ["免费", "国产", "最强"], url: "https://kimi.moonshot.cn", price: "free", isNew: true },
+            
+            // 图像生成
+            { name: "Midjourney", category: "图像生成", icon: "🎨", iconBg: "linear-gradient(135deg, #8b5cf6, #6d28d9)", desc: "最强AI绘画工具，通过文字描述生成令人惊叹的艺术作品", tags: ["付费", "艺术感", "最强绘图"], url: "https://midjourney.com", price: "paid", isNew: false },
+            { name: "DALL-E", category: "图像生成", icon: "🖼️", iconBg: "linear-gradient(135deg, #10b981, #059669)", desc: "OpenAI的图像生成模型，生成质量高且支持多种风格", tags: ["付费", "高品质", "创意"], url: "https://openai.com/dall-e-3", price: "paid", isNew: false },
+            { name: "Stable Diffusion", category: "图像生成", icon: "⚡", iconBg: "linear-gradient(135deg, #ec4899, #db2777)", desc: "开源的图像生成模型，可在本地部署，完全免费使用", tags: ["免费", "开源", "本地部署"], url: "https://stability.ai", price: "free", isNew: false },
+            { name: "Leonardo", category: "图像生成", icon: "🎭", iconBg: "linear-gradient(135deg, #0ea5e9, #0284c7)", desc: "功能强大的AI绘画平台，实时生成和编辑功能丰富", tags: ["免费", "功能强", "实时"], url: "https://leonardo.ai", price: "freemium", isNew: false },
+            { name: "即梦AI", category: "图像生成", icon: "🏃", iconBg: "linear-gradient(135deg, #ec4899, #be185d)", desc: "字节跳动推出的AI绘画工具，中文界面，免费使用", tags: ["免费", "国产", "中文"], url: "https://jimeng.jianying.com", price: "free", isNew: true },
+            { name: "通义万相", category: "图像生成", icon: "🎪", iconBg: "linear-gradient(135deg, #f97316, #c2410c)", desc: "阿里推出的AI绘画工具，支持多种风格", tags: ["免费", "阿里", "多样"], url: "https://tongyi.aliyun.com/wanxiang", price: "free", isNew: false },
+            { name: "Liblib", category: "图像生成", icon: "📚", iconBg: "linear-gradient(135deg, #6366f1, #4338ca)", desc: "国内最大的AI绘画社区，模型丰富", tags: ["免费", "社区", "模型多"], url: "https://liblib.ai", price: "freemium", isNew: false },
+            { name: "秒画", category: "图像生成", icon: "⚡", iconBg: "linear-gradient(135deg, #06b6d4, #0891b2)", desc: "商汤科技推出的AI绘画工具，效果惊艳", tags: ["免费", "国产", "商汤"], url: "https://miaohua.sensetime.com", price: "free", isNew: true },
+            
+            // 视频生成
+            { name: "Runway", category: "视频生成", icon: "🎬", iconBg: "linear-gradient(135deg, #f43f5e, #e11d48)", desc: "AI视频生成和编辑平台，支持文生视频、图生视频等功能", tags: ["付费", "视频编辑", "创意"], url: "https://runway.ml", price: "paid", isNew: false },
+            { name: "Sora", category: "视频生成", icon: "🌊", iconBg: "linear-gradient(135deg, #0ea5e9, #0284c7)", desc: "OpenAI推出的视频生成模型，能根据文字生成高质量视频", tags: ["付费", "视频生成", "前沿"], url: "https://sora.com", price: "paid", isNew: false },
+            { name: "Pika", category: "视频生成", icon: "🎥", iconBg: "linear-gradient(135deg, #f472b6, #ec4899)", desc: "AI视频生成工具，支持文字和图片生成视频，简单易用", tags: ["免费", "视频", "新手友好"], url: "https://pika.art", price: "freemium", isNew: false },
+            { name: "Luma AI", category: "视频生成", icon: "🎲", iconBg: "linear-gradient(135deg, #3b82f6, #2563eb)", desc: "AI视频生成和3D模型创建", tags: ["免费", "3D", "创新"], url: "https://lumalabs.ai", price: "freemium", isNew: false },
+            { name: "可灵AI", category: "视频生成", icon: "🔔", iconBg: "linear-gradient(135deg, #facc15, #eab308)", desc: "快手推出的AI视频生成工具，效果惊艳", tags: ["免费", "国产", "视频强"], url: "https://klingai.com", price: "freemium", isNew: true },
+            { name: "海螺AI", category: "视频生成", icon: "🌈", iconBg: "linear-gradient(135deg, #8b5cf6, #7c3aed)", desc: "MiniMax推出的视频生成工具", tags: ["免费", "国产", "视频"], url: "https://hailuoai.com", price: "free", isNew: true },
+            
+            // 编程辅助
+            { name: "Cursor", category: "编程辅助", icon: "💻", iconBg: "linear-gradient(135deg, #6366f1, #4f46e5)", desc: "基于AI的代码编辑器，智能补全、调试、重构，编程效率翻倍", tags: ["免费", "编程", "效率"], url: "https://cursor.sh", price: "freemium", isNew: false },
+            { name: "GitHub Copilot", category: "编程辅助", icon: "🐙", iconBg: "linear-gradient(135deg, #1f2937, #111827)", desc: "GitHub推出的AI编程助手，实时提供代码建议和补全", tags: ["付费", "编程", "GitHub"], url: "https://github.com/features/copilot", price: "paid", isNew: false },
+            { name: "Windsurf", category: "编程辅助", icon: "🌊", iconBg: "linear-gradient(135deg, #0ea5e9, #0284c7)", desc: "新一代AI代码编辑器，比Cursor更智能", tags: ["免费", "编辑器", "新版"], url: "https://codeium.com/windsurf", price: "freemium", isNew: true },
+            { name: "Trae", category: "编程辅助", icon: "🚀", iconBg: "linear-gradient(135deg, #f97316, #ea580c)", desc: "字节跳动推出的AI编程工具，中文界面", tags: ["免费", "国产", "中文"], url: "https://trae.ai", price: "free", isNew: true },
+            { name: "CodeGeex", category: "编程辅助", icon: "💎", iconBg: "linear-gradient(135deg, #3b82f6, #1d4ed8)", desc: "智谱AI推出的编程助手，完全免费", tags: ["免费", "国产", "智谱"], url: "https://codegeex.cn", price: "free", isNew: false },
+            
+            // 写作办公
+            { name: "Notion AI", category: "写作办公", icon: "📝", iconBg: "linear-gradient(135deg, #000000, #333333)", desc: "集成在Notion中的AI助手，帮你写作、整理思路、自动提取要点", tags: ["付费", "办公", "写作"], url: "https://notion.so/product/ai", price: "paid", isNew: false },
+            { name: "Gamma", category: "写作办公", icon: "📊", iconBg: "linear-gradient(135deg, #14b8a6, #0d9488)", desc: "AI演示文稿生成工具，输入主题自动生成精美PPT", tags: ["免费", "PPT", "效率"], url: "https://gamma.app", price: "freemium", isNew: false },
+            { name: "Tome", category: "写作办公", icon: "📖", iconBg: "linear-gradient(135deg, #6366f1, #4f46e5)", desc: "AI PPT制作工具，生成速度极快", tags: ["免费", "PPT", "快速"], url: "https://tome.app", price: "freemium", isNew: false },
+            { name: "秘塔写作猫", category: "写作办公", icon: "🐱", iconBg: "linear-gradient(135deg, #f97316, #ea580c)", desc: "国产AI写作工具，纠错、改写、文案生成", tags: ["免费", "国产", "纠错"], url: "https://xiezuocat.com", price: "freemium", isNew: false },
+            { name: "讯飞智文", category: "写作办公", icon: "📄", iconBg: "linear-gradient(135deg, #3b82f6, #2563eb)", desc: "科大讯飞AI文档生成，支持PPT、Word", tags: ["免费", "国产", "文档"], url: "https://zhiwen.xfyun.cn", price: "free", isNew: false },
+            
+            // 音频处理
+            { name: "ElevenLabs", category: "音频处理", icon: "🎙️", iconBg: "linear-gradient(135deg, #8b5cf6, #7c3aed)", desc: "AI语音合成，声音自然，支持多语言", tags: ["付费", "语音合成", "最强"], url: "https://elevenlabs.io", price: "paid", isNew: false },
+            { name: "Murf AI", category: "音频处理", icon: "🎤", iconBg: "linear-gradient(135deg, #ec4899, #db2777)", desc: "AI配音工具，提供多种音色选择", tags: ["付费", "配音", "多样"], url: "https://murf.ai", price: "paid", isNew: false },
+            { name: "剪映", category: "音频处理", icon: "✂️", iconBg: "linear-gradient(135deg, #ef4444, #dc2626)", desc: "字节跳动视频剪辑工具，AI功能强大", tags: ["免费", "剪辑", "国产"], url: "https://capcut.cn", price: "free", isNew: false },
+            { name: "必剪", category: "音频处理", icon: "🎬", iconBg: "linear-gradient(135deg, #f59e0b, #d97706)", desc: "B站官方视频剪辑工具，AI功能丰富", tags: ["免费", "B站", "剪辑"], url: "https://lab.bilibili.com", price: "free", isNew: false },
+            
+            // 搜索工具
+            { name: "Morphic", category: "搜索工具", icon: "🧩", iconBg: "linear-gradient(135deg, #06b6d4, #0891b2)", desc: "新一代AI搜索引擎，结合传统搜索和AI对话", tags: ["免费", "搜索", "AI"], url: "https://morphic.sh", price: "free", isNew: false },
+            { name: "Arc Search", category: "搜索工具", icon: "🌈", iconBg: "linear-gradient(135deg, #6366f1, #4f46e5)", desc: "Browser Company推出的AI搜索App", tags: ["免费", "搜索", "iOS"], url: "https://arc.net", price: "free", isNew: false },
+            { name: "知乎直答", category: "搜索工具", icon: "❓", iconBg: "linear-gradient(135deg, #0084ff, #0066cc)", desc: "知乎AI搜索工具，专业问答", tags: ["免费", "国产", "问答"], url: "https://zhidao.zhihu.com", price: "free", isNew: true },
+            
+            // 3D建模
+            { name: "Meshy AI", category: "3D建模", icon: "🎳", iconBg: "linear-gradient(135deg, #14b8a6, #0d9488)", desc: "AI 3D模型生成，从文字或图片创建3D模型", tags: ["免费", "3D", "AI"], url: "https://meshy.ai", price: "freemium", isNew: false },
+            { name: "Tripo", category: "3D建模", icon: "🔺", iconBg: "linear-gradient(135deg, #8b5cf6, #7c3aed)", desc: "AI 3D生成工具，快速创建3D资产", tags: ["免费", "3D", "快速"], url: "https://tripo3d.ai", price: "freemium", isNew: false },
+            
+            // 电商营销
+            { name: "Copy.ai", category: "电商营销", icon: "📰", iconBg: "linear-gradient(135deg, #7c3aed, #6d28d9)", desc: "AI营销文案生成工具，快速生成广告文案", tags: ["免费", "营销", "文案"], url: "https://copy.ai", price: "freemium", isNew: false },
+            { name: "Jasper", category: "电商营销", icon: "✨", iconBg: "linear-gradient(135deg, #f59e0b, #d97706)", desc: "企业级AI营销平台，批量生成内容", tags: ["付费", "营销", "企业"], url: "https://jasper.ai", price: "paid", isNew: false },
+            
+            // AI插件
+            { name: "Microsoft Copilot", category: "AI插件", icon: "🔷", iconBg: "linear-gradient(135deg, #00a4ef, #0078d4)", desc: "微软AI助手，集成在Windows和Office中", tags: ["免费", "Microsoft", "办公"], url: "https://copilot.microsoft.com", price: "free", isNew: false },
+            { name: "Google Gemini", category: "AI插件", icon: "🔵", iconBg: "linear-gradient(135deg, #4285f4, #3367d6)", desc: "Google AI助手，集成在Google全家桶", tags: ["免费", "Google", "办公"], url: "https://gemini.google.com", price: "free", isNew: false },
+            { name: "WPS AI", category: "AI插件", icon: "📑", iconBg: "linear-gradient(135deg, #d4382d, #b32d23)", desc: "WPS办公AI助手，文档处理", tags: ["免费", "国产", "办公"], url: "https://wps.cn", price: "freemium", isNew: false },
+            { name: "通义效率", category: "AI插件", icon: "⚡", iconBg: "linear-gradient(135deg, #f97316, #ea580c)", desc: "阿里AI效率工具，实时记录、会议纪要", tags: ["免费", "阿里", "效率"], url: "https://tongyi.aliyun.com/xiaoe", price: "free", isNew: false },
+        ];
+
+        // Get unique categories
+        const categories = ['全部', ...new Set(aiTools.map(t => t.category))];
+        
+        // Render categories
+        const categoryContainer = document.getElementById('categories');
+        categories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = `category-btn ${cat === '全部' ? 'active' : ''}`;
+            btn.textContent = cat;
+            btn.dataset.category = cat === '全部' ? 'all' : cat;
+            btn.onclick = () => filterTools(btn.dataset.category);
+            categoryContainer.appendChild(btn);
+        });
+
+        // Update stats
+        document.getElementById('toolCount').textContent = aiTools.length;
+        document.getElementById('categoryCount').textContent = categories.length - 1;
+
+        // Set update time
+        const now = new Date();
+        const today = `${now.getMonth()+1}月${now.getDate()}日`;
+        document.getElementById('updateTime').textContent = `今日更新：${today}`;
+
+        // Render tools with ads
+        function renderTools(tools) {
+            const grid = document.getElementById('toolsGrid');
+            
+            if (tools.length === 0) {
+                grid.innerHTML = '<div class="loading">没有找到相关工具</div>';
+                return;
+            }
+            
+            let html = '';
+            tools.forEach((tool, index) => {
+                // Insert ad card every 15 tools
+                if (index > 0 && index % 15 === 0) {
+                    html += `
+                    <div class="ad-card">
+                        <h3>📢 推广位招商中</h3>
+                        <p>精准曝光，按效果付费</p>
+                        <button class="ad-btn">立即咨询</button>
+                    </div>`;
+                }
+                
+                let priceBadge = '';
+                if (tool.price === 'free') priceBadge = '<span class="tool-badge badge-free">免费</span>';
+                else if (tool.price === 'paid') priceBadge = '<span class="tool-badge badge-paid">付费</span>';
+                else priceBadge = '<span class="tool-badge badge-free"> freemium</span>';
+                
+                if (tool.isNew) priceBadge += '<span class="tool-badge badge-new" style="margin-left:4px">NEW</span>';
+                
+                html += `
+                <div class="tool-card" onclick="window.open('${tool.url}', '_blank')">
+                    <div class="tool-link">→</div>
+                    <div class="tool-header">
+                        <div class="tool-icon" style="background: ${tool.iconBg}">${tool.icon}</div>
+                        <div class="tool-info">
+                            <div class="tool-name">${tool.name} ${priceBadge}</div>
+                            <span class="tool-category">${tool.category}</span>
+                        </div>
+                    </div>
+                    <p class="tool-desc">${tool.desc}</p>
+                    <div class="tool-tags">
+                        ${tool.tags.map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
+                    </div>
+                </div>`;
+            });
+            
+            grid.innerHTML = html;
+        }
+
+        // Filter tools
+        function filterTools(category) {
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+            
+            if (category === 'all') {
+                renderTools(aiTools);
+            } else {
+                renderTools(aiTools.filter(t => t.category === category));
+            }
+        }
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = aiTools.filter(tool => 
+                tool.name.toLowerCase().includes(query) || 
+                tool.desc.toLowerCase().includes(query) ||
+                tool.category.toLowerCase().includes(query)
+            );
+            renderTools(filtered);
+        });
+
+        // Tabs
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+            };
+        });
+
+        // Auto refresh for daily update simulation
+        function checkForUpdates() {
+            // In production, this would fetch from a JSON API
+            const lastUpdate = localStorage.getItem('aiToolsLastUpdate');
+            const today = new Date().toDateString();
+            
+            if (lastUpdate !== today) {
+                // Trigger update animation
+                document.getElementById('updateTime').innerHTML = '<span style="color: var(--success)">● 数据已更新</span>';
+                localStorage.setItem('aiToolsLastUpdate', today);
+            }
+        }
+
+        // Initial render
+        renderTools(aiTools);
+        
+        // Check for updates
+        checkForUpdates();
+    </script>
+</body>
+</html>
